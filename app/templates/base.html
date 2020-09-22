@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         {% if title %}
         <title>{{ title }} - welcome to my local music database</title>
@@ -8,9 +9,9 @@
     </head>
     <body>
         <div>
-            <a href="/home">home</a>
-            <a href="/listOfArtists">artists</a>
-{#          <a href="/newArtist">new artists</a>
+            <a href="{{ url_for('homepage') }}">home</a>
+            <a href="{{ url_for('listOfArtists') }}">artists</a>
+            <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
         </div>
         <hr>
         <h2>{{ user.title }}</h2>

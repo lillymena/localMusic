@@ -1,20 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         {% if title %}
         <title>{{ title }} - my favorite artist</title>
         {% else %}
-        <title>my favorite artist right now is sir!</title>
+        <title>this is my favorite artist right now</title>
         {% endif %}
     </head>
     <body>
         <div>
-            <a href="/home">home</a>
-            <a href="/listOfArtists">artists</a>
-{#          <a href="/newArtist">new artists</a>
+            <a href="{{ url_for('homepage') }}">Local Music Database</a>
+            <a href="{{ url_for('listOfArtists') }}">artists</a>
+            <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
         </div>
         <hr>
         <h2>{{ user.title }}</h2>
-        <p>{{ body.body }}</p>
+        <p><b>first artist is:</b> <a href="{{ url_for('sir') }}">SiR</a></p>
+        <p><b>second artist is:</b> <a href="{{ url_for('homepage') }}">Smino</a></p>
+        <p><b>third artist is:</b> <a href="{{ url_for('homepage') }}">Sza</a></p>
+        <p><b>fourth artist is:</b> <a href="{{ url_for('homepage') }}">Giveon</a></p>
+        <p><b>fifth artist is:</b> <a href="{{ url_for('homepage') }}">UMI</a></p>
         {% block content %}{% endblock %}
     </body>
 </html>
