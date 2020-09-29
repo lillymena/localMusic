@@ -1,5 +1,6 @@
-from flask import render_template
+from flask import render_template, flash
 from app import app
+from app.templates.forms import NewArtist
 
 
 @app.route('/')
@@ -17,11 +18,15 @@ def listOfArtists():
     return render_template('localArtist.html', title='home', user=title, body=body)
 
 
-@app.route('/newArtist')
+@app.route('/newArtist', methods=['GET', 'POST'])
 def createNewArtist():
-    title = {'title': 'New Artists'}
-    body = {'artist'}
-    return render_template('newArtist.html', title='home', user=title, body=body)
+    form = NewArtist()
+    if form.validate_on_submit():
+        flash("New Artist Request Submitted".format)
+        new_form = NewArtist()
+        render_template('newArtist.html', title="New Artist Request", form=new_form)
+
+    return render_template('newArtist.html', title="New Artist Request", form=form)
 
 
 @app.route('/sir')

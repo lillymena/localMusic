@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         {% if title %}
-        <title>{{ title }} - create a new artist</title>
+        <title>{{ title }} - new artist request</title>
         {% else %}
-        <title>create a new artist</title>
+        <title>new artist request</title>
         {% endif %}
     </head>
     <body>
@@ -14,8 +14,38 @@
             <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
         </div>
         <hr>
-        <h2>{{ user.title }}</h2>
-        <p>{{ body.body }}</p>
-        {% block content %}{% endblock %}
+        <p>{{ form.form }}</p>
+        {% block content %}
+            <h1>New Artist Request</h1>
+            <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            </p>
+                <br>
+            <p>
+            {{ form.hometown.label }}
+            {{ form.hometown(size=32) }}
+            {% for error in form.hometown.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.description.label }}
+            {{ form.description(size=32) }}
+            {% for error in form.description.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            </p>
+            <p>
+            {{ form.submit() }}
+            </p>
+            </form>
+
+        {% endblock %}
     </body>
 </html>

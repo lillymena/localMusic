@@ -9,12 +9,11 @@
     </head>
     <body>
         <div>
-            <a href="{{ url_for('homepage') }}">Local Music Database</a>
+            <a href="{{ url_for('homepage') }}">home</a>
             <a href="{{ url_for('listOfArtists') }}">artists</a>
             <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
         </div>
         <hr>
-        <h2>{{ user.title }}</h2>
         <p><b>first artist is:</b> <a href="{{ url_for('sir') }}">SiR</a></p>
         <p><b>second artist is:</b> <a href="{{ url_for('homepage') }}">Smino</a></p>
         <p><b>third artist is:</b> <a href="{{ url_for('homepage') }}">Sza</a></p>
