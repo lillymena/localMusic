@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% if title %}
-        <title>{{ title }} - local music database</title>
-        {% else %}
-        <title>come find out about my current favorite artists :)</title>
-        {% endif %}
-    </head>
     <body>
         <div>
             <a href="{{ url_for('homepage') }}">home</a>
@@ -14,8 +7,9 @@
             <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
         </div>
         <hr>
-        <h2>{{ user.title }}</h2>
-        <p>{{ body.body }}</p>
-        {% block content %}{% endblock %}
+        {% block app_content %}
+            <h1>Welcome to My Local Music Database</h1>
+            <p>Discover local artists :)</p>
+        {% endblock %}
     </body>
 </html>

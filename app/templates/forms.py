@@ -3,8 +3,9 @@ from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextA
 from wtforms.validators import DataRequired
 
 
-class NewArtist(FlaskForm):
+class ArtistForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     hometown = StringField('hometown', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
     submit = SubmitField('submit')
+

@@ -1,0 +1,8 @@
+{
+  "name": "AnonUser",
+  "school": "Ithaca College",
+  "degree": [
+    {"major": "political science",
+    "minor": "web development"}
+  ]
+}

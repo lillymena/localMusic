@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        {% if title %}
-        <title>{{ title }} - new artist request</title>
-        {% else %}
-        <title>new artist request</title>
-        {% endif %}
-    </head>
-    <body>
-        <div>
-            <a href="{{ url_for('homepage') }}">home</a>
-            <a href="{{ url_for('listOfArtists') }}">artists</a>
-            <a href="{{ url_for('createNewArtist') }}">create a new artist</a>
-        </div>
-        <hr>
-        <p>{{ form.form }}</p>
-        {% block content %}
+{% extends "base.html" %}
+
+        {% block app_content %}
             <h1>New Artist Request</h1>
             <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
@@ -47,5 +32,3 @@
             </form>
 
         {% endblock %}
-    </body>
-</html>
