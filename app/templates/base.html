@@ -29,15 +29,17 @@
             {% else %}
                 <a href="{{ url_for('homepage') }}">Home</a>
                 <a href="{{ url_for('listOfArtists') }}">Artist</a>
-                <a href="{{ url_for('createNewArtist') }}">Create</a>
+                <a href="{{ url_for('createNewArtist') }}">Create New Artist</a>
+                <a href="{{ url_for('createNewEvent') }}">Create New Event</a>
+                <a href="{{ url_for('createNewVenue') }}">Create New Venue</a>
                 <a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
                 <a href="{{ url_for('logout') }}">Logout</a></li>
-{% endif %}
+            {% endif %}
         </div>
         <hr>
         {% block app_content %}
-            <h1>Welcome to My Local Music Database</h1>
-            <p>Discover local artists :)</p>
+{#            <h1>Welcome to My Local Music Database</h1>#}
+{#            <p>Discover local artists :)</p>#}
         {% endblock %}
     </body>
 </html>

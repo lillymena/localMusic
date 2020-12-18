@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
 
 from app import app, db
-from app.templates.forms import ArtistForm, LoginForm, RegistrationForm
+from app.templates.forms import ArtistForm, LoginForm, RegistrationForm, EventForm, VenueForm, EmptyForm
 from app.models import Artist, Venue, Event, ArtistToEvent, User
 
 
@@ -36,6 +36,36 @@ def createNewArtist():
         db.session.commit()
         return redirect(url_for('listOfArtists'))
     return render_template('newArtist.html', title="newArtist", form=form)
+
+
+@app.route('/newEvent', methods=['GET', 'POST'])
+def createNewEvent():
+    form = EventForm()
+    form.venueName.choices = [(venue.id, venue.name) for venue in Venue.query.all()]
+    form.artists.choices = [(artist.id, artist.name) for artist in Artist.query.all()]
+    if form.validate_on_submit():
+        flash('New event requested for Event {}'.format(form.eventName.data))
+        my_event = Event(name=form.eventName.data, date=form.date.data, venue_id=form.venueName.data)
+        for a in form.artists.data:
+            my_artist = Artist.query.filter_by(id=a).first()
+            db.session.add(ArtistToEvent(artist=my_artist, event=my_event))
+        db.session.add(my_event)
+        db.session.commit()
+        return redirect(url_for('artists'))
+    return render_template('newEvent.html', title='newEvent', form=form)
+
+
+@app.route('/newVenue', methods=['GET', 'POST'])
+def createNewVenue():
+    form = VenueForm()
+    if form.validate_on_submit():
+        flash('New venue requested for artist {}'.format(form.venueName.data))
+        my_venue = Venue(name=form.venueName.data, address=form.address.data, city=form.city.data,
+                         state=form.state.data)
+        db.session.add(my_venue)
+        db.session.commit()
+        return redirect(url_for('artists'))
+    return render_template('newVenue.html', title='newVenue', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

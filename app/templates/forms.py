@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField, BooleanField
+from wtforms import StringField, PasswordField, IntegerField, SubmitField, TextAreaField, BooleanField, DateField, \
+    SelectField, SelectMultipleField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 from app.models import User
@@ -10,6 +11,22 @@ class ArtistForm(FlaskForm):
     hometown = StringField('hometown', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
     submit = SubmitField('submit')
+
+
+class EventForm(FlaskForm):
+    eventName = StringField('event name:', validators=[DataRequired()])
+    date = DateField("date", format="%Y-%m-%d", validators=[DataRequired()])
+    venueName = SelectField('venue', coerce=int, validators=[DataRequired()])
+    artists = SelectMultipleField('artists', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('create new event')
+
+
+class VenueForm(FlaskForm):
+    venueName = StringField('venue name:', validators=[DataRequired()])
+    address = StringField('address', validators=[DataRequired()])
+    city = StringField('city', validators=[DataRequired()])
+    state = StringField('state', validators=[DataRequired()])
+    submit = SubmitField('Create New Venue')
 
 
 class LoginForm(FlaskForm):
