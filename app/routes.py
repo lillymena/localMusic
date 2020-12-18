@@ -34,6 +34,7 @@ def createNewArtist():
         my_artist = Artist(name=form.name.data, hometown=form.hometown.data, description=form.description.data)
         db.session.add(my_artist)
         db.session.commit()
+        flash('New artist created.')
         return redirect(url_for('listOfArtists'))
     return render_template('newArtist.html', title="newArtist", form=form)
 
@@ -51,7 +52,8 @@ def createNewEvent():
             db.session.add(ArtistToEvent(artist=my_artist, event=my_event))
         db.session.add(my_event)
         db.session.commit()
-        return redirect(url_for('artists'))
+        flash('New event created.')
+        return redirect(url_for('listOfArtists'))
     return render_template('newEvent.html', title='newEvent', form=form)
 
 
@@ -64,7 +66,8 @@ def createNewVenue():
                          tickets=form.tickets.data)
         db.session.add(my_venue)
         db.session.commit()
-        return redirect(url_for('artists'))
+        flash('New venue created.')
+        return redirect(url_for('listOfArtists'))
     return render_template('newVenue.html', title='newVenue', form=form)
 
 
