@@ -19,16 +19,16 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.city.label }}<br>
-            {{ form.city(size=32) }}<br>
-            {% for error in form.city.errors %}
+            {{ form.date.label }}<br>
+            {{ form.date(size=32) }}<br>
+            {% for error in form.date.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            State (2 letters e.g., NY, CA)<br>
-            {{ form.state(size=2) }}<br>
-            {% for error in form.state.errors %}
+            {{ form.tickets.label }}<br>
+            {{ form.tickets(size=32) }}<br>
+            {% for error in form.tickets.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>

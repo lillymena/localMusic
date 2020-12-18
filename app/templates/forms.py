@@ -23,9 +23,9 @@ class EventForm(FlaskForm):
 
 class VenueForm(FlaskForm):
     venueName = StringField('venue name:', validators=[DataRequired()])
+    date = DateField("date", format="%Y-%m-%d", validators=[DataRequired()])
     address = StringField('address', validators=[DataRequired()])
-    city = StringField('city', validators=[DataRequired()])
-    state = StringField('state', validators=[DataRequired()])
+    tickets = StringField('tickets', validators=[DataRequired()])
     submit = SubmitField('Create New Venue')
 
 

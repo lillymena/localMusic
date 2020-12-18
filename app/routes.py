@@ -60,8 +60,8 @@ def createNewVenue():
     form = VenueForm()
     if form.validate_on_submit():
         flash('New venue requested for artist {}'.format(form.venueName.data))
-        my_venue = Venue(name=form.venueName.data, address=form.address.data, city=form.city.data,
-                         state=form.state.data)
+        my_venue = Venue(name=form.venueName.data, date=form.date.data, location=form.address.data,
+                         tickets=form.tickets.data)
         db.session.add(my_venue)
         db.session.commit()
         return redirect(url_for('artists'))
@@ -76,7 +76,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Invalid username or password.')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('homepage'))
